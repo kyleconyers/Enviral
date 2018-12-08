@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   /* global moment */
 
   // blogContainer holds all of our posts
@@ -38,15 +38,31 @@ $(document).ready(function() {
     }
     console.log("..................xxx", newComment)
     //console.log("comment body test", commentText)
-    $.post("/api/comment", newComment, function() {
-      console.log("look at me???????")
+    $.post("/api/comment", newComment, function () {
+      //console.log("look at me???????")
     })
-      // .then(commentData);
-      // console.log("commentData", commentData)
-
+    // .then(commentData);
+    // console.log("commentData", commentData)
   }
 
+  //Function getComment
+  function getComment(event) {
+    axios.get('/api/Comment')
+      .then(function (response) {
+        //console.log(response);
+        for (let i = 0; i < response.data.length; i++) {
+          var p = $('<p>')
+          p.text(response.data[i].body)
+          // console.log("this is", p);
+          // console.log("this is another thing", response.data[i].body)
+          $(".comment").append(p);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
+  }
 
   // This function grabs posts from the database and updates the view
   function getPosts(author) {
@@ -54,13 +70,12 @@ $(document).ready(function() {
     if (authorId) {
       authorId = "/?author_id=" + authorId;
     }
-    $.get("/api/posts" + authorId, function(data) {
+    $.get("/api/posts" + authorId, function (data) {
       console.log("Posts", data);
       posts = data;
       if (!posts || !posts.length) {
         displayEmpty(author);
-      }
-      else {
+      } else {
         initializeRows();
       }
     });
@@ -69,10 +84,10 @@ $(document).ready(function() {
   // This function does an API call to delete posts
   function deletePost(id) {
     $.ajax({
-      method: "DELETE",
-      url: "/api/posts/" + id
-    })
-      .then(function() {
+        method: "DELETE",
+        url: "/api/posts/" + id
+      })
+      .then(function () {
         getPosts(postCategorySelect.val());
       });
   }
@@ -108,8 +123,7 @@ $(document).ready(function() {
     newPostAuthor.css({
       float: "right",
       color: "blue",
-      "margin-top":
-      "-10px"
+      "margin-top": "-10px"
     });
     var newPostCardBody = $("<div>");
     newPostCardBody.addClass("card-body");
@@ -125,7 +139,7 @@ $(document).ready(function() {
     newPostCardHeading.append(newPostTitle);
     newPostCardHeading.append(newPostAuthor);
     newPostCardBody.append(newPostBody);
-    newPostCardBody.append(newPostId);
+    //newPostCardBody.append(newPostId);
     newPostCard.append(newPostCardHeading);
     newPostCard.append(newPostCardBody);
     newPostCard.data("post", post);
@@ -159,10 +173,14 @@ $(document).ready(function() {
     }
     blogContainer.empty();
     var messageH2 = $("<h2>");
-    messageH2.css({ "text-align": "center", "margin-top": "50px" });
+    messageH2.css({
+      "text-align": "center",
+      "margin-top": "50px"
+    });
     messageH2.html("No posts yet" + partial + ", navigate <a href='/cms" + query +
-    "'>here</a> in order to get started.");
+      "'>here</a> in order to get started.");
     blogContainer.append(messageH2);
   }
+  getComment();
 
 });

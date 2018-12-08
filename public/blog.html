@@ -27,17 +27,22 @@
       <div class="col-md-12 blog-container">
       </div>
     </div>
-<!-- Adding the comment section here -->
-    <div id = "example_list">
-        <label for="commentBody">Comment:</label>
-        <textarea placeholder="Comment Body" class="form-control" rows="10" id="commentBody"></textarea>
-        <input placeholder="Enter a name" id="commentorName" type="text">
-        <button class="delete btn btn-danger">x</button>
-        <button class="edit btn btn-info">EDIT</button>
-        <button type="submit" class="btn btn-success" id="commentSubmit">Submit</button>
+    <!-- Adding the comment section here -->
+    <div class="row">
+      <div class="col-md-12 comment">
+      </div>
+    </div>
+    <div id="example_list">
+      <label for="commentBody">Comment:</label>
+      <textarea placeholder="Comment Body" class="form-control" rows="10" id="commentBody"></textarea>
+      <input placeholder="Enter a name" id="commentorName" type="text">
+      <button class="delete btn btn-danger">x</button>
+      <button class="edit btn btn-info">EDIT</button>
+      <button type="submit" class="btn btn-success" id="commentSubmit">Submit</button>
     </div>
   </div>
   <!-- Custom Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
   <script src="js/blog.js" type="text/javascript"></script>
 

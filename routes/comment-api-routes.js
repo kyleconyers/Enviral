@@ -23,7 +23,7 @@ module.exports = function(app) {
     // In this case, just db.Author
     db.Comment.findAll({
       where: query,
-      include: [db.Comment]
+      include: [db.Post]
     }).then(function(dbComment) {
       res.json(dbComment);
     });

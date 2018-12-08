@@ -10,14 +10,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
-    
+    <script src="https://pym.nprapps.org/pym.v1.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+
     <!-- Relative Paths -->
-    <script type="text/javascript" src="public/js/api.js"></script>
-    <script type="text/javascript" src="public/js/index.js"></script>
+    <script src="public/js/api.js"></script>
+    <script src="public/js/index.js"></script>
     <script src="node_modules/datamaps/dist/datamaps.world.min.js"></script>
     <link rel="stylesheet" type="text/css" href="public/styles/styles.css">
   </head>
@@ -31,7 +31,7 @@
     <script>
         var map = new Datamap({
             element: document.getElementById('container'),
-            projection: 'mercator',
+            projection: 'orthographic',
             fills: {
             defaultFill: "#ABDDA4",
             GlobalEnergyProfile: "#fa0fa0"
@@ -47,6 +47,9 @@
             FRA: { fillKey: "GlobalEnergyProfile" },
             COD: { fillKey: "GlobalEnergyProfile" }
             },
+            projectionConfig: {
+              rotation: [97,-30]
+            },
             geographyConfig: {
               popupTemplate: function(geo, data) {
                     return ['<div class="hoverinfo"><strong>', geo.properties.name, '</strong></div>'].join('');
@@ -56,8 +59,10 @@
               borderOpacity: 1,
               dataUrl: null
               //dataJson: topoJsonData
-            }
+            },
         });
+
+          map.graticule();
 
         // Draw a legend for this map
           map.legend({legendTitle: 'Legend:'});
@@ -65,6 +70,14 @@
         // Use d3 to make the map responsive in case the screen size changes
             d3.select(window).on('resize', function() {
             map.resize();
+        });
+
+        d3.selectAll("path").on('click', function(element) {
+           var countryCode = element.id;
+           var data = countryDataLookup[countryCode];
+           // TODO: figure out why data is undefined
+           // It appears that 'data' is undefined because index.js is run before api.js, but 'data' depends on api.js
+           alert(data);
         });
 
     </script>

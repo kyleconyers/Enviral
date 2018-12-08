@@ -45,3 +45,10 @@ button.edit {
 .top-30 {
   margin-top: 30px;
 }
+
+.title {
+  display: inline-block;
+  font-size: 48px;
+  line-height: 90px;
+  text-align: center;
+}

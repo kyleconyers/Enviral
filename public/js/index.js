@@ -132,6 +132,8 @@ function drawChart() {
 
   // ]);
 
+  var worldCreated;
+
   var data = google.visualization.arrayToDataTable(
       worldCreated
       );
@@ -153,7 +155,7 @@ function drawChart() {
   };
   
   var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-  chart.draw( , options);
+  chart.draw(data, options);
 }
 
 

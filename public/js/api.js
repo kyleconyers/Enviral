@@ -17,6 +17,9 @@ var AusCoalArray = [];
 var worldCreated;
 var totalCoalArrayList = [];
 var totalNaturalGasList = [];
+
+// Scott's added code
+var countryDataLookup = { };
  
 var usaTotal = [];
 
@@ -100,26 +103,28 @@ Promise.all(totalCoalArray).then(function(values) {
 
 function fetchTotalNaturalGas(url) {
     return fetch(url).then(function (res) {
-        return res.json()
-    }).then(function (dataTotalNaturalGas) {
+        return res.json();
+    }).then(function (json) {
         // console.log("data Coal here ", dataCoal)
         // console.log(dataTotalCoal)
-        totalNaturalGasArray = dataTotalNaturalGas['series'][0]['data'];
+        var data = json['series'][0]['data'];
+        totalNaturalGasArray = data;
+        var countryCode = json['series'][0]['geography'];
         // console.log("Coal array is heeeere", coalArray);
         // console.log("Total coal", totalCoalArray);
-        naturalGasArr.push(totalNaturalGasArray)
-        return totalNaturalGasArray;
+        naturalGasArr.push(json);
+        return { countryCode: countryCode, data: data};
     });
 
 };
 // fetchTotalCoal();
-var totalNaturalGasArray = isoArray.map(function(element){
-    // console.log("http://api.eia.gov/series/?api_key=" + APIkey + "&series_id=INTL.4411-2-" + element + "-QBTU.A");
-    return fetchTotalNaturalGas("http://api.eia.gov/series/?api_key=" + APIkey + "&series_id=INTL.4413-2-" + element + "-QBTU.A")
+var totalNaturalGasArray = isoArray.map(function(countryCode){
+    // console.log("http://api.eia.gov/series/?api_key=" + APIkey + "&series_id=INTL.4411-2-" + countryCode + "-QBTU.A");
+    return fetchTotalNaturalGas("http://api.eia.gov/series/?api_key=" + APIkey + "&series_id=INTL.4413-2-" + countryCode + "-QBTU.A")
 })
 
-Promise.all(totalNaturalGasArray).then(function(values) {
-    console.log('natural gas values', values)
+Promise.all(totalNaturalGasArray).then(function(pair) {
+    countryDataLookup[pair.countryCode] = pair.data;
 })
 
 // console.log(totalCoalArray)

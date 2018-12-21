@@ -104,7 +104,7 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 // googlecharts
 
 google.charts.load('current', {'packages':['corechart']});
-setTimeout(function() { google.charts.setOnLoadCallback(drawChart) }, 2000);
+setTimeout(function() { google.charts.setOnLoadCallback(drawChart) }, 3000);
 
 
 //onload: create country total array, pupulate graph totals
@@ -137,6 +137,7 @@ function drawChart(region = "world") {
       regionData[region]
       );
       console.log(data)
+      console.log(regionData[region])
   // var data = createworld();
   // console.log(data) 
   // data = data.map(function(set){

@@ -28,9 +28,9 @@ $(document).ready(function(){
         // US, China, Brazil, India, Russia, Australia, France, Democratic Republic of Congo
         USA: { fillKey: "GlobalEnergyProfile" },
         CHN: { fillKey: "GlobalEnergyProfile" },
-        BRA: { fillKey: "GlobalEnergyProfile" },
+        // BRA: { fillKey: "GlobalEnergyProfile" },
         IND: { fillKey: "GlobalEnergyProfile" },
-        RUS: { fillKey: "GlobalEnergyProfile" },
+        // RUS: { fillKey: "GlobalEnergyProfile" },
         AUS: { fillKey: "GlobalEnergyProfile" },
         FRA: { fillKey: "GlobalEnergyProfile" },
         COD: { fillKey: "GlobalEnergyProfile" }
@@ -84,9 +84,9 @@ $(document).ready(function(){
         // US, China, Brazil, India, Russia, Australia, France, Democratic Republic of Congo
         USA: { fillKey: "GlobalEnergyProfile" },
         CHN: { fillKey: "GlobalEnergyProfile" },
-        BRA: { fillKey: "GlobalEnergyProfile" },
+        // BRA: { fillKey: "GlobalEnergyProfile" },
         IND: { fillKey: "GlobalEnergyProfile" },
-        RUS: { fillKey: "GlobalEnergyProfile" },
+        // RUS: { fillKey: "GlobalEnergyProfile" },
         AUS: { fillKey: "GlobalEnergyProfile" },
         FRA: { fillKey: "GlobalEnergyProfile" },
         COD: { fillKey: "GlobalEnergyProfile" }
@@ -142,9 +142,9 @@ $(document).ready(function(){
         // US, China, Brazil, India, Russia, Australia, France, Democratic Republic of Congo
         USA: { fillKey: "GlobalEnergyProfile" },
         CHN: { fillKey: "GlobalEnergyProfile" },
-        BRA: { fillKey: "GlobalEnergyProfile" },
+        // BRA: { fillKey: "GlobalEnergyProfile" },
         IND: { fillKey: "GlobalEnergyProfile" },
-        RUS: { fillKey: "GlobalEnergyProfile" },
+        // RUS: { fillKey: "GlobalEnergyProfile" },
         AUS: { fillKey: "GlobalEnergyProfile" },
         FRA: { fillKey: "GlobalEnergyProfile" },
         COD: { fillKey: "GlobalEnergyProfile" }
